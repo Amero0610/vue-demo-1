@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-01-27 23:57:10
  * @LastEditors: Amero
- * @LastEditTime: 2022-01-28 00:08:08
+ * @LastEditTime: 2022-02-04 12:44:54
  * @FilePath: \vue-demo-1\src\components\InfoPage\repoart.vue
 -->
 <template>
@@ -81,6 +81,7 @@
     a <br>  
     a <br>  
     a <br>  
+    this is test<br>
 </el-scrollbar>
 
 </div>
