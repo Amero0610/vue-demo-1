@@ -59,6 +59,12 @@ const routes = [
         name:'ExamPaper',
         component:()=>
         import('../views/menuPage/examPaper.vue')
+    },
+    {
+        path:'/exampage',
+        name:'ExamPage',
+        component:()=>
+        import('../views/examPage/examPage.vue')
     }
     
 ]

@@ -80,7 +80,7 @@
           <span slot="title">Navigator Two</span>
         </template>
         <el-menu-item-group class="menuItemContentcenter">
-          <el-menu-item index="2-1">Option 2-1</el-menu-item>
+          <el-menu-item index="2-1" route="/exampage">Exam Page</el-menu-item>
           <el-menu-item index="2-2">Option 2-2</el-menu-item>
           <el-menu-item index="2-3">Option 2-3</el-menu-item>
           <el-submenu index="2-4" class="menuItemContentcenter">
@@ -109,7 +109,7 @@
 </template>
 <style>
 .atestbox{
-  height: 79vh;
+  height: calc(100vh - 57px - 60px - 5px);
 }
 .atestbox .el-scrollbar__wrap {
   overflow-x: hidden;

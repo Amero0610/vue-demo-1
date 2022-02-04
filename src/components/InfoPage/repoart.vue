@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-01-27 23:57:10
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-04 12:44:54
+ * @LastEditTime: 2022-02-04 14:42:44
  * @FilePath: \vue-demo-1\src\components\InfoPage\repoart.vue
 -->
 <template>

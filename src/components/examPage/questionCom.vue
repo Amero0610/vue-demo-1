@@ -2,12 +2,13 @@
  * @Author: Amero
  * @Date: 2022-02-03 19:54:07
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-05 00:20:22
- * @FilePath: \vue-demo-1\src\views\menuPage\examPaper.vue
+ * @LastEditTime: 2022-02-05 02:48:46
+ 
 -->
+
 <template>
   <div>
-    <p id="title">Exam Page</p>
+    <p id="title">{{pageTitle}}</p>
     <div id="testbox">
       <div
         class="questionBox"
@@ -69,17 +70,15 @@
                 <el-col :span="21" :push="1" :offset="0" class="optiontext_2">
                   <span class="optiontext_2">{{ item.AnsD }}</span>
                 </el-col>
-                
               </el-row>
             </el-card>
           </el-col>
         </el-row>
-        
       </div>
-    
     </div>
     <div id="clear_both"></div>
     <div id="submitBtn">
+      <!-- :disabled="isDisabled"  -->
       <el-button type="primary" @click="getValue()" :disabled="isDisabled" plain
         >Submit Answer</el-button
       >
@@ -88,84 +87,23 @@
 </template>
 <script>
 export default {
+  name: "questioncom",
+  props: ["questionList","pageTitle"],
   data() {
     return {
       isDisabled: true,
-      questionList: [
-        {
-          userAns: "value_1",
-          questionNo: 10,
-          questionContent: "This is Question10",
-          AnsA: "10Ans A",
-          AnsB: "10Ans B",
-          AnsC: "10Ans C",
-          AnsD: "10Ans D",
-        },
-        {
-          userAns: "value_2",
-          questionNo: 11,
-          questionContent: "This is Question11",
-          AnsA: "11Ans A",
-          AnsB: "11Ans B",
-          AnsC: "11Ans C",
-          AnsD: "11Ans D",
-        },
-        {
-          userAns: "value_2",
-          questionNo: 11,
-          questionContent: "This is Question11",
-          AnsA: "11Ans A",
-          AnsB: "11Ans B",
-          AnsC: "11Ans C",
-          AnsD: "11Ans D",
-        },
-        {
-          userAns: "value_2",
-          questionNo: 11,
-          questionContent: "This is Question11",
-          AnsA: "11Ans A",
-          AnsB: "11Ans B",
-          AnsC: "11Ans C",
-          AnsD: "11Ans D",
-        },
-        {
-          userAns: "value_2",
-          questionNo: 11,
-          questionContent: "This is Question11",
-          AnsA: "11Ans A",
-          AnsB: "11Ans B",
-          AnsC: "11Ans C",
-          AnsD: "11Ans D",
-        },
-        {
-          userAns: "value_2",
-          questionNo: 11,
-          questionContent: "This is Question11",
-          AnsA: "11Ans A",
-          AnsB: "11Ans B",
-          AnsC: "11Ans C",
-          AnsD: "11Ans D",
-        },
-        {
-          userAns: "value_2",
-          questionNo: 11,
-          questionContent: "This is Question11",
-          AnsA: "11Ans A",
-          AnsB: "11Ans B",
-          AnsC: "11Ans C",
-          AnsD: "11Ans D",
-        },
-      ],
-      ansList: [],
+      
     };
   },
   methods: {
     getValue: function () {
+      let ansList = new Array();
       for (let i = 0; i < this.questionList.length; i++) {
-        this.ansList.push(this.questionList[i].userAns);
+        ansList.push(this.questionList[i].userAns);
+ 
       }
-      alert(this.ansList);
-      console.log(this.ansList);
+      this.$emit('sendAns',ansList);
+  
     },
     judgeIsDisable: function (dataList) {
       let jIndex = 0;
@@ -194,14 +132,13 @@ export default {
 };
 </script>
 <style>
-#clear_both{
+#clear_both {
   clear: both;
 }
 #testbox {
   width: 100%;
-  
- 
 }
+/* ../../assets/font/GravityBold-JAp7.otf */
 @font-face {
   font-family: "questionFont";
   src: url("../../assets/font/GravityBold-JAp7.otf");
@@ -256,8 +193,7 @@ export default {
   font-size: 16px;
 }
 #submitBtn {
-
-    width: 100%;
-    margin-top: 3%;
+  width: 100%;
+  margin-top: 3%;
 }
 </style>
