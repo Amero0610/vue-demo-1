@@ -25,7 +25,7 @@ export default {
     return {
       questionList: [
         {
-          userAns: "value_1",
+          userAns: "value",
           questionNo: 10,
           questionContent: "This is Question10",
           AnsA: "10Ans A",
@@ -34,7 +34,7 @@ export default {
           AnsD: "10Ans D",
         },
         {
-          userAns: "value_2",
+          userAns: "value",
           questionNo: 11,
           questionContent: "This is Question11",
           AnsA: "11Ans A",

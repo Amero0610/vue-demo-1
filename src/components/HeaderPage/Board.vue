@@ -39,6 +39,8 @@
 #HeaderPersonalIcon {
 }
 #Headertitle {
+  text-align: left;
+  padding-left: 5%;
 font-size: large;
 }
 #HeaderPersonName {

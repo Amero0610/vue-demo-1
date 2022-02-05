@@ -2,13 +2,24 @@
  * @Author: Amero
  * @Date: 2022-02-03 19:54:07
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-05 02:48:46
+ * @LastEditTime: 2022-02-05 18:04:55
  
 -->
 
 <template>
   <div>
-    <p id="title">{{pageTitle}}</p>
+    <p id="title">{{ pageTitle }}</p>
+    <el-row type="flex" justify="center" align="middle" id="submitFlag">
+      <el-col :span="23" :push="0"
+        >{{SubmitStatus}}
+        <el-progress
+          :percentage="processPercent"
+          :status="processStatus"
+          :color="customColors"
+          :stroke-width="10"
+        ></el-progress>
+      </el-col>
+    </el-row>
     <div id="testbox">
       <div
         class="questionBox"
@@ -22,7 +33,7 @@
                 <el-col :span="2">
                   <p class="questionNo">{{ item.questionNo }}.</p>
                 </el-col>
-                <el-col :span="10">
+                <el-col :span="22">
                   <p class="quesitonContent">{{ item.questionContent }}</p>
                 </el-col>
               </el-row>
@@ -88,11 +99,20 @@
 <script>
 export default {
   name: "questioncom",
-  props: ["questionList","pageTitle"],
+  props: ["questionList", "pageTitle"],
   data() {
     return {
+      SubmitStatus:"Unsubmitted",
       isDisabled: true,
-      
+      processStatus: null,
+      processPercent: 0,
+      customColors: [
+        { color: "#efce61", percentage: 20 },
+        { color: "#d9d958", percentage: 40 },
+        { color: "#c4e450", percentage: 60 },
+        { color: "#aeee47", percentage: 80 },
+        { color: "#98f93e", percentage: 100 },
+      ],
     };
   },
   methods: {
@@ -100,10 +120,10 @@ export default {
       let ansList = new Array();
       for (let i = 0; i < this.questionList.length; i++) {
         ansList.push(this.questionList[i].userAns);
- 
       }
-      this.$emit('sendAns',ansList);
-  
+      this.SubmitStatus = "Submitted"
+      this.processStatus = "success"
+      this.$emit("sendAns", ansList);
     },
     judgeIsDisable: function (dataList) {
       let jIndex = 0;
@@ -120,11 +140,29 @@ export default {
         ? (this.isDisabled = false)
         : (this.isDisabled = true);
     },
+    setProcessData: function (userAns, allAns) {
+      let temp = (userAns / allAns) * 100;
+      this.processPercent = Math.floor(temp);
+    },
+    setProcessStatus: function (ansList) {
+      let tempList = new Array();
+      for (let i = 0; i < ansList.length; i++) {
+        tempList.push(ansList[i].userAns);
+      }
+      let index = 0;
+      for (let i = 0; i < tempList.length; i++) {
+        if (tempList[i] != "value") {
+          index++;
+        }
+      }
+      this.setProcessData(index, tempList.length);
+    },
   },
   watch: {
     questionList: {
       handler: function (newVal) {
         this.judgeIsDisable(newVal);
+        this.setProcessStatus(newVal);
       },
       deep: true,
     },
@@ -132,6 +170,10 @@ export default {
 };
 </script>
 <style>
+#submitFlag {
+  text-align: left;
+  width: 100%;
+}
 #clear_both {
   clear: both;
 }
@@ -153,7 +195,7 @@ export default {
   /* font-family: 'Montserrat', sans-serif; */
   /* font-weight: ; */
   width: 49%;
-  margin-top: 3%;
+  margin-top: 2%;
   float: left;
   border-right: 3px solid white;
 }

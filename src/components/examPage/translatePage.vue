@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-02-05 00:52:08
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-05 01:03:39
+ * @LastEditTime: 2022-02-05 15:20:19
  * @FilePath: \vue-demo-1\src\components\examPage\translatePage.vue
 -->
 <template>
@@ -25,7 +25,7 @@ export default {
     return {
       questionList: [
         {
-          userAns: "value_1",
+          userAns: "value",
           questionNo: 10,
           questionContent: "This is Question10",
           AnsA: "10Ans A",
@@ -34,7 +34,7 @@ export default {
           AnsD: "10Ans D",
         },
         {
-          userAns: "value_2",
+          userAns: "value",
           questionNo: 11,
           questionContent: "This is Question11",
           AnsA: "11Ans A",
