@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-02-05 00:27:16
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-05 15:36:31
+ * @LastEditTime: 2022-02-06 12:14:37
  * @FilePath: \vue-demo-1\src\components\examPage\listenPage.vue
 -->
 <template>
@@ -33,7 +33,7 @@ export default {
           AnsC: "10Ans C",
           AnsD: "10Ans D",
         },
-                {
+        {
           userAns: "value",
           questionNo: 10,
           questionContent: "This is Question10",
@@ -42,7 +42,7 @@ export default {
           AnsC: "10Ans C",
           AnsD: "10Ans D",
         },
-                {
+        {
           userAns: "value",
           questionNo: 10,
           questionContent: "This is Question10",

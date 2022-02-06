@@ -2,12 +2,23 @@
  * @Author: Amero
  * @Date: 2022-01-11 21:35:18
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-02 21:11:27
+ * @LastEditTime: 2022-02-06 22:12:58
  * @FilePath: \vue-demo-1\src\router\index.js
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import AboutPageCom from '../views/About.vue'
+import MainPageCom from '../views/MainPage.vue'
+import InfoPageCom from '../views/InfoPage.vue'
+import DownloadPageCom from '../views/menuPage/downloadfile.vue'
+import MusciPlayerPageCom from '../views/menuPage/musicplayer.vue'
+import PdfPageCom from '../views/menuPage/pdfPage.vue'
+import ExamPaperPageCom from '../views/menuPage/examPaper.vue'
+import ExamPageCom from '../views/examPage/examPage.vue'
+import UserLoginPageCom from '../views/userLoginPage/userLoginPage.vue'
+import UserLoginLoginCom from '../components/loginPage/loginPage.vue'
+import UserLoginlogupCom from '../components/loginPage/logupPage.vue'
 
 Vue.use(VueRouter)
 
@@ -15,56 +26,68 @@ const routes = [
     {
         path: '/',
         name: 'Home',
+        redirect:'/mainpage',
         component: Home
     },
     {
         path: '/about',
         name: 'About',
-        component: () =>
-            import('../views/About.vue')
+        component: AboutPageCom
     },
     {
         path: '/mainpage',
         name: 'MainPage',
-        component: () =>
-            import('../views/MainPage.vue')
+        component: MainPageCom
     },
     {
         path: '/info',
         name: 'InfoPage',
-        component: () =>
-            import('../views/InfoPage.vue')
+        component: InfoPageCom
     },
     {
         path: '/downloadfile',
         name: 'DownloadFile',
-        component: () =>
-            import('../views/menuPage/downloadfile.vue')
+        component: DownloadPageCom
 
     },
     {
         path: '/musicplayer',
         name: 'MusicPlayer',
-        component: () =>
-            import('../views/menuPage/musicplayer.vue')
+        component: MusciPlayerPageCom
     },
     {
         path:'/pdfpage',
         name:'PDFPage',
-        component:()=>
-        import('../views/menuPage/pdfPage.vue')
+        component:PdfPageCom
     },
     {
         path:'/exampaper',
         name:'ExamPaper',
-        component:()=>
-        import('../views/menuPage/examPaper.vue')
+        component:ExamPaperPageCom
     },
     {
         path:'/exampage',
         name:'ExamPage',
-        component:()=>
-        import('../views/examPage/examPage.vue')
+        component:ExamPageCom
+    },
+    {
+        path:'/userlogin',
+        name:"User",
+        redirect:'/userlogin/login',
+        component:UserLoginPageCom,
+        children:[
+            {
+                path:"logup",
+                name:"LogUp",
+                component:UserLoginlogupCom
+            },
+            {
+                path:"login",
+                name:"LogIn",
+                component:UserLoginLoginCom
+            }
+        ]
+
     }
     
 ]
