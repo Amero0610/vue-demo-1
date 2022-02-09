@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-02-03 19:54:07
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-05 18:04:55
+ * @LastEditTime: 2022-02-10 00:57:31
  
 -->
 
@@ -201,7 +201,7 @@ export default {
 }
 #title {
   color: black;
-  font-weight: bolder;
+  font-weight: 600;
   font-size: 18px;
   margin-bottom: 0px;
 }

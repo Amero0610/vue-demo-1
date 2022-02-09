@@ -68,8 +68,11 @@ export default {
 @font-face {
   font-family: "ansFont";
   src: url("./assets/font/Gravity-V546.otf");
+  
 }
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 /* ::-webkit-scrollbar {
     width: 5px;
     height: 14px;
@@ -108,11 +111,13 @@ border-radius: 3px;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  font-family: "asnFont";
+  font-family: "asnFont"; */
+  /* Montserrat  Poppins*/
+   font-family: "Montserrat", sans-serif !important;
 
   text-align: center;
   color: #2c3e50;
