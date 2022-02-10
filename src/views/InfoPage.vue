@@ -2,69 +2,67 @@
   <div>
     <el-tabs>
       <el-tab-pane
-        ><span slot="label"><i class="el-icon-my-zhijuanzhiqia"></i> Document</span
+        ><span slot="label"
+          ><i class="el-icon-my-zhijuanzhiqia"></i> Document</span
         >Document
 
-        <el-button type="primary"  @click="testfunc">Submit</el-button>
+        <el-button type="primary" @click="testfunc">Submit</el-button>
         <div v-show="isshowtestbox" class="testbox"></div>
-         <div class="datepicker">
-      <el-date-picker
-        v-model="value1"
-        type="date"
-        placeholder="Select date"
-        prefix-icon="el-icon-my-jiluchoucha"
-      >
-      </el-date-picker>
-    </div>
-    <div class="Inputbox">
-      <el-row type="flex" align="middle">
-        <el-col :span="7"> <p>Username:</p></el-col>
-        <el-col :span="18">
-          <el-input
-            placeholder="Please Input Username"
-            v-model="Username"
-            clearable
-          ></el-input
-        ></el-col>
-      </el-row>
-      <br />
-      <el-row type="flex" align="middle">
-        <el-col :span="7"> <p>Password:</p></el-col>
-        <el-col :span="18">
-          <el-input
-            placeholder="Please Input Password"
-            v-model="Password"
-            show-password
-            clearable
-          ></el-input
-        ></el-col>
-      </el-row>
-    </div>
-     
+        <div class="datepicker">
+          <el-date-picker
+            v-model="value1"
+            type="date"
+            placeholder="Select date"
+            prefix-icon="el-icon-my-jiluchoucha"
+          >
+          </el-date-picker>
+        </div>
+        <div class="Inputbox">
+          <el-row type="flex" align="middle">
+            <el-col :span="7"> <p>Username:</p></el-col>
+            <el-col :span="18">
+              <el-input
+                placeholder="Please Input Username"
+                v-model="Username"
+                clearable
+              ></el-input
+            ></el-col>
+          </el-row>
+          <br />
+          <el-row type="flex" align="middle">
+            <el-col :span="7"> <p>Password:</p></el-col>
+            <el-col :span="18">
+              <el-input
+                placeholder="Please Input Password"
+                v-model="Password"
+                show-password
+                clearable
+              ></el-input
+            ></el-col>
+          </el-row>
+        </div>
       </el-tab-pane>
       <el-tab-pane
-        ><span slot="label"><i class="el-icon-my-jiluchoucha"></i> Report</span
-        >
+        ><span slot="label"><i class="el-icon-my-jiluchoucha"></i> Report</span>
         <report></report>
       </el-tab-pane>
       <el-tab-pane
         ><span slot="label"><i class="el-icon-my-sousuo"></i> Search</span>
         Search
         <div class="pdf-content">
-  <iframe
-  height="500px"
-  width="80%"
-  :src="pdfUrl"
-  frameborder="0"></iframe>
-
-</div>
+          <iframe
+            height="500px"
+            width="80%"
+            :src="pdfUrl"
+            frameborder="0"
+          ></iframe>
+        </div>
       </el-tab-pane>
     </el-tabs>
-
   </div>
 </template>
 <style>
-.pdf-content{
+.pdf-content {
   width: 100%;
   height: 1100px;
 }
@@ -82,20 +80,18 @@
 }
 </style>
 <script>
-import report from './../components/InfoPage/repoart.vue'
+import report from "./../components/InfoPage/repoart.vue";
 // import pdffile from './../assets/file/testfile.pdf';
 import globalfile from "./../assets/globalAssets/global.js";
 export default {
-  components:{
-    report
+  components: {
+    report,
   },
   data() {
-
     return {
+      // `${baseUrl.pageRoot}pdf/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`
 
-// `${baseUrl.pageRoot}pdf/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`
-
-pdfUrl:"../assets/pdfjs-2.12.313-dist/web/viewer.html",
+      pdfUrl: "",
       Username: "",
       Password: "",
       value1: "",
@@ -103,33 +99,30 @@ pdfUrl:"../assets/pdfjs-2.12.313-dist/web/viewer.html",
     };
   },
   methods: {
-    judgeUser(Uname,Upass){
-      if(Uname == 'admin'&&Upass =='7890'){
+    judgeUser(Uname, Upass) {
+      if (Uname == "admin" && Upass == "7890") {
         globalfile.UserToken = true;
         return true;
-      }
-      else{
+      } else {
         return false;
       }
     },
     testfunc() {
       globalfile.tempObjectvar.Username = this.Username;
       globalfile.tempObjectvar.Password = this.Password;
-      if(this.judgeUser(this.Username,this.Password)){
-               this.$alert('Send Success!','Message',{
-         confirmButtonText:'Confirm'
-       })
-      }
-      else{
-        this.$message.error( {message:'Wrong!Pleas Check Again!',center:true});
+      if (this.judgeUser(this.Username, this.Password)) {
+        this.$alert("Send Success!", "Message", {
+          confirmButtonText: "Confirm",
+        });
+      } else {
+        this.$message.error({
+          message: "Wrong!Pleas Check Again!",
+          center: true,
+        });
       }
 
       // this.isshowtestbox = !this.isshowtestbox;
-
     },
-
-
-  }
-
+  },
 };
 </script>
