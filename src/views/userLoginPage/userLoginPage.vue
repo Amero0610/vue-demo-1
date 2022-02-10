@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-02-06 19:39:03
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-06 20:00:17
+ * @LastEditTime: 2022-02-11 00:19:20
  * @FilePath: \vue-demo-1\src\views\userLoginPage\userLoginPage.vue
 -->
 <template>
@@ -23,7 +23,7 @@ export default {
 <style>
 #MainBox{
     width: 100%;
-    height: 500px;
+    height: 100vh;
     background-color: rgb(171, 247, 218);
 }
 </style>

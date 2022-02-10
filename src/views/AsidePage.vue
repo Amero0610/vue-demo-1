@@ -7,7 +7,7 @@
 -->
 <template>
   <div class="myMenubox">
-    <Menu></Menu>
+    <Menu v-on="$listeners"></Menu>
   </div>
 </template>
 <script>

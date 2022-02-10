@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-01-11 21:35:18
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-06 22:12:58
+ * @LastEditTime: 2022-02-10 19:08:09
  * @FilePath: \vue-demo-1\src\router\index.js
  */
 import Vue from 'vue'
@@ -19,6 +19,7 @@ import ExamPageCom from '../views/examPage/examPage.vue'
 import UserLoginPageCom from '../views/userLoginPage/userLoginPage.vue'
 import UserLoginLoginCom from '../components/loginPage/loginPage.vue'
 import UserLoginlogupCom from '../components/loginPage/logupPage.vue'
+import UserInfoCom from '../views/userinfo.vue'
 
 Vue.use(VueRouter)
 
@@ -88,6 +89,11 @@ const routes = [
             }
         ]
 
+    },
+    {
+        path:'/userinfo',
+        name:"UserInfo",
+        component:UserInfoCom
     }
     
 ]

@@ -19,7 +19,7 @@
         </div>
         <div class="Inputbox">
           <el-row type="flex" align="middle">
-            <el-col :span="7"> <p>Username:</p></el-col>
+            <el-col :span="9"> <p>Username:</p></el-col>
             <el-col :span="18">
               <el-input
                 placeholder="Please Input Username"
@@ -30,7 +30,7 @@
           </el-row>
           <br />
           <el-row type="flex" align="middle">
-            <el-col :span="7"> <p>Password:</p></el-col>
+            <el-col :span="9"> <p>Password:</p></el-col>
             <el-col :span="18">
               <el-input
                 placeholder="Please Input Password"

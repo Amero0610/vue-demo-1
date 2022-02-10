@@ -79,7 +79,7 @@
 <style>
 #mainbox {
   width: 100%;
-  height: 500px;
+  /* height: 500px; */
 }
 #mainbox .title {
   font-size: 23px;

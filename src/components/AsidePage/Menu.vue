@@ -15,8 +15,9 @@
         <i class="el-icon-my-zhankai"></i>Collapse</el-radio-button
       >
     </el-radio-group> -->
-    <el-row type="flex" justify="start" align="top">
-      <el-col :span="5" style="margin-bottom: 5px">
+    <!-- <el-row type="flex" justify="start" align="top">
+      <el-col :span="6" style="margin-bottom: 5px"> -->
+        <div id="buttonBox">
         <transition>
           <el-button
             id="MenuButton"
@@ -31,11 +32,11 @@
             @click="testfunc()"
           ></el-button>
         </transition>
-      </el-col>
-    </el-row>
+        </div>
+      <!-- </el-col>
+    </el-row> -->
 
     <div class="atestbox">
-      <el-scrollbar style="height: 100%">
         <el-menu
           class="el-menu-vertical-demo2"
           @open="handleOpen"
@@ -99,7 +100,7 @@
                 >Exam Page</el-menu-item
               >
               <el-menu-item index="2-2" route="/userlogin">User Login</el-menu-item>
-              <el-menu-item index="2-3">Option 2-3</el-menu-item>
+              <el-menu-item index="2-3" route="/userinfo">User Info</el-menu-item>
               <el-submenu index="2-4" class="menuItemContentcenter">
                 <template slot="title">
                   <span slot="title">Option 4</span>
@@ -120,24 +121,42 @@
             <span slot="title">Navigator Four</span>
           </el-menu-item>
         </el-menu>
-      </el-scrollbar>
     </div>
   </div>
 </template>
 <style>
+
+#buttonBox{
+  line-height: 52px;
+  background-color: rgb(236, 234, 234);
+  transition: 0.4s;
+  /* bottom: 0px; */
+  z-index: 1000000;
+  top: 60px;
+  width: 300px;
+  position: fixed;
+  /* height: 1000px; */
+  /* background-color: rebeccapurple; */
+}
 .atestbox {
-  height: calc(100vh - 57px - 60px - 5px);
+  /* margin-top: 30px; */
+  margin-top: 60px;
+/* 
+  height: calc(100vh - 57px - 60px - 5px); */
 }
 .atestbox .el-scrollbar__wrap {
   overflow-x: hidden;
 }
+.atestbox .el-menu{
+  border-right: none;
+}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 99%;
-  border-right: solid 1px #e6e6e6;
+  /* border-right: solid 1px #e6e6e6; */
   min-height: 0px;
 }
 .el-menu-vertical-demo2:not(.el-menu--collapse) {
-  border-right: solid 1px #e6e6e6;
+  /* border-right: solid 1px #e6e6e6; */
   width: 99%;
   min-height: 0px;
 }
@@ -152,6 +171,7 @@
 }
 .menuItemContentleft {
   text-align: left !important;
+  /* background-color: rebeccapurple; */
 }
 .menuItemContentcenter {
   text-align: center !important;
@@ -209,8 +229,10 @@ export default {
     testfunc() {
       if (this.isCollapse) {
         this.isCollapse = false;
+        this.$emit('getReply',false);
       } else {
         this.isCollapse = true;
+        this.$emit('getReply',true)
       }
     },
   },

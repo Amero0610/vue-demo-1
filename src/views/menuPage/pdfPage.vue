@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-02-02 21:10:35
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-03 02:29:09
+ * @LastEditTime: 2022-02-11 00:19:53
  * @FilePath: \vue-demo-1\src\views\menuPage\pdfPage.vue
 -->
 <template>
@@ -24,6 +24,7 @@ export default {
 <style>
 #pdfContent{
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 60px);
+    background-color: red;
 }
 </style>

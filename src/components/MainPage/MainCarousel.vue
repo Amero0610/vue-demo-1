@@ -4,11 +4,11 @@
       <p>This is a carousel</p>
     </div>
     <div id="Carousel">
-      <el-carousel trigger="click" type="card">
+      <el-carousel trigger="click" type="card" height="calc(50vh)" arrow="always">
         <el-carousel-item v-for="item in imageSrc" :key="item">
           <el-image
             :src="item"
-            fit="contain"
+            fit="scale-down"
             :preview-src-list="srclist"
           ></el-image>
         </el-carousel-item>
@@ -48,5 +48,8 @@ export default {
 #MainPageText {
   font-weight: bolder;
   font-size: 20px;
+}
+#Carousel .el-carousel__container{
+  /* height: 100vh; */
 }
 </style>
