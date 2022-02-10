@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-01-11 23:03:22
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-02 13:20:57
+ * @LastEditTime: 2022-02-11 02:17:23
  * @FilePath: \vue-demo-1\vue.config.js
  */
 
@@ -42,5 +42,9 @@ module.exports = {
             .loader('file-loader')
             .end()
 
-    }
+    },
+    
+    css: {
+        extract: false
+      }
 }

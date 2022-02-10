@@ -207,9 +207,6 @@
     transform: rotate(0deg);
   }
 }
-.MenuItemtext {
-  /* font-family: cursive; */
-}
 </style>
 
 <script>
