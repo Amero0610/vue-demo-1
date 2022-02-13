@@ -96,6 +96,7 @@ export default {
   width: 64px;
 }
 .main {
+  /* margin-left: 5px; */
   transition: 0.4s;
   height: calc(100vh - 60px);
   padding: 0px !important;

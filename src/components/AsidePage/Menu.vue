@@ -128,7 +128,8 @@
 
 #buttonBox{
   line-height: 52px;
-  background-color: rgb(236, 234, 234);
+
+  background-color: white ;
   transition: 0.4s;
   /* bottom: 0px; */
   z-index: 1000000;
@@ -138,6 +139,12 @@
   /* height: 1000px; */
   /* background-color: rebeccapurple; */
 }
+#buttonBox:hover{
+  background-color: #ecf5ff;
+  /* background-color:rgb(240, 236, 236); */
+
+}
+
 .atestbox {
   /* margin-top: 30px; */
   margin-top: 60px;
