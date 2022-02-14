@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-02-10 19:06:55
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-14 02:20:15
+ * @LastEditTime: 2022-02-14 21:03:36
  * @FilePath: \vue-demo-1\src\views\userinfo.vue
 -->
 <template>
@@ -91,6 +91,9 @@
 }
 </style>
 <script>
+import axios from 'axios';
+// const URL_USERINFO = "http://127.0.0.1:3000/data/userinfo/user";
+const URL_USERLOGIN = "http://127.0.0.1:3000/data/userlogin/"
 export default {
   data: () => ({
     isSubmit: true,
@@ -102,6 +105,19 @@ export default {
     },
   }),
   methods: {
+    api_getuserInfo:function(){
+      axios.get(
+        URL_USERLOGIN,{
+          headers:{
+            getvalue:"true",
+          },
+          params:{
+            userId:"970"
+          }
+      }).then(data=>{
+        console.log(data.data);
+      })
+    },
     submitClick: function () {
       console.log( JSON.stringify(this.userInfoList));
 
