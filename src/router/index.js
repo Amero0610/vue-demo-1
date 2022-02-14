@@ -20,6 +20,7 @@ import UserLoginPageCom from '../views/userLoginPage/userLoginPage.vue'
 import UserLoginLoginCom from '../components/loginPage/loginPage.vue'
 import UserLoginlogupCom from '../components/loginPage/logupPage.vue'
 import UserInfoCom from '../views/userinfo.vue'
+import UsersCom from '../views/users.vue'
 
 Vue.use(VueRouter)
 
@@ -94,6 +95,10 @@ const routes = [
         path:'/userinfo',
         name:"UserInfo",
         component:UserInfoCom
+    },{
+        path:'/users',
+        name:"Users Info",
+        component:UsersCom
     }
     
 ]

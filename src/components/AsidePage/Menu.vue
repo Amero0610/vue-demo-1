@@ -112,9 +112,9 @@
               </el-submenu>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="3" id="testthird" class="menuItemContentleft">
+          <el-menu-item index="3" id="testthird" class="menuItemContentleft" route="/users">
             <i class="el-icon-my-chengjifenxi"></i>
-            <span slot="title">Navigator Three</span>
+            <span slot="title">Users Infomation</span>
           </el-menu-item>
           <el-menu-item index="4" class="menuItemContentleft">
             <i class="el-icon-my-shijuandianping"></i>
