@@ -57,7 +57,7 @@
             <i class="el-icon-my-xiangmuxiangqing"></i>
             <span slot="title">AboutPage</span>
           </el-menu-item>
-          <el-menu-item index="info" class="menuItemContentleft">
+          <el-menu-item index="info" class="menuItemContentleft" route="/info">
             <i class="el-icon-my-quanbuguanli"></i>
             <span slot="title">InfoPage</span>
           </el-menu-item>
