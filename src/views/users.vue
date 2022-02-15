@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-02-15 00:12:55
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-15 02:51:54
+ * @LastEditTime: 2022-02-16 01:39:52
  * @FilePath: \vue-demo-1\src\views\users.vue
 -->
 <template>
@@ -30,6 +30,7 @@
               maxlength="300"
               size="mini"
               @change="changeValue"
+              @focus="isDisabled"
             />
 
             <span v-else>{{ scope.row.readScore }}</span>
@@ -47,6 +48,7 @@
               maxlength="300"
               size="mini"
               @change="changeValue"
+              @focus="isDisabled"
             />
 
             <span v-else>{{ scope.row.writeScore }}</span>
@@ -64,12 +66,18 @@
               maxlength="300"
               size="mini"
               @change="changeValue"
+              @focus="isDisabled"
             />
 
             <span v-else>{{ scope.row.listenScore }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="sumScore" label="Score" sortable>
+        <el-table-column
+          prop="sumScore"
+          label="Score"
+          sortable
+          class-name="scoreStyle"
+        >
           <template slot-scope="scope">
             <el-input
               :autofocus="true"
@@ -80,7 +88,7 @@
               maxlength="300"
               size="mini"
               @change="changeValue"
-              @blur="blur"
+              @focus="isDisabled"
             />
 
             <span v-else>{{ scope.row.sumScore }}</span>
@@ -88,40 +96,98 @@
         >
       </el-table>
     </div>
+    <div class="confirmField" v-if="!Btn_disabled">
+      <button id="Btn_Cancel" @click="Btn_Cancel" :disabled="Btn_disabled">
+        Cancel
+      </button>
+      <button id="Btn_Confirm" @click="Btn_Confirm" :disabled="Btn_disabled">
+        Confirm
+      </button>
+    </div>
   </div>
 </template>
 <script>
+const SCORELAW = /^(255|([1-2][0-4][0-9]?)(?:\.\d{0,2})?|(0|[1-9][0-9]?)(?:\.\d{0,2}))?$/;
 export default {
   data: () => ({
+    Btn_disabled: true,
     currentIndex: "null",
     currentLabel: "",
-
+    currentValue_old: "",
+    currentValue_new: "",
+    currentLabel_data: "",
+    currentIndex_data: "",
     tableList: [
       {
         username: "w",
-        readScore: "21",
-        writeScore: "22",
-        listenScore: "3",
-        sumScore: "120",
+        readScore: 21,
+        writeScore: 22,
+        listenScore: 3,
+        sumScore: 120,
       },
       {
         username: "z",
-        readScore: "21",
-        writeScore: "23",
-        listenScore: "32",
-        sumScore: "117",
+        readScore: 21,
+        writeScore: 23,
+        listenScore: 32,
+        sumScore: 117,
       },
       {
         username: "m",
-        readScore: "22",
-        writeScore: "31",
-        listenScore: "49",
-        sumScore: "142",
+        readScore: 22,
+        writeScore: 31,
+        listenScore: 49,
+        sumScore: 142,
       },
     ],
+    labelName: ["Read Score", "Write Score", "Listen Score", "Score"],
     currentRow: null,
   }),
   methods: {
+    checkInput: function (_str, _explainStr) {
+      console.log(_str);
+      return _explainStr.test(_str)
+    },
+
+    verifyScore: function (_score) {
+      if (this.checkInput(_score, SCORELAW)) {
+        return true;
+      } else {
+        this.$message({
+          type: "error",
+          message: "The format of the input is incorrect",
+        });
+        return false;
+      }
+    },
+    returnDataName: function (str) {
+      for (let i = 0; i < this.labelName.length; i++) {
+        if (str == this.labelName[i]) {
+          switch (i) {
+            case 0: {
+              return "readScore";
+            }
+            case 1: {
+              return "writeScore";
+            }
+            case 2: {
+              return "listenScore";
+            }
+            case 3: {
+              return "sumScore";
+            }
+          }
+        }
+      }
+    },
+    returnRealIndex: function (data) {
+      let queryName = data.username;
+      for (let i = 0; i < this.tableList.length; i++) {
+        if (this.tableList[i].username == queryName) {
+          return i;
+        }
+      }
+    },
     handleCurrentChange: function (val) {
       this.currentRow = val;
     },
@@ -130,6 +196,12 @@ export default {
       return "initBackground";
     },
     testclick: function (row, column) {
+      // this.Btn_disabled = false;
+      this.currentIndex_data = this.returnRealIndex(row);
+      this.currentLabel_data = this.returnDataName(column.label);
+      this.currentValue_old =
+        this.tableList[this.currentIndex_data][this.currentLabel_data];
+      this.currentValue_new = this.currentValue_old;
       switch (column.label) {
         case "Read Score": {
           this.currentIndex = row.index;
@@ -158,17 +230,78 @@ export default {
     selectStyle: function () {},
 
     changeValue: function (value) {
-      this.tableList[this.currentIndex][this.currentLabel] = value;
-      this.currentIndex = null;
-      this.currentLabel = "";
+      this.currentValue_new = value;
+      // this.currentLabel = "";
     },
     blur: function () {
       (this.currentIndex = null), (this.currentLabel = "");
+      this.Btn_disabled = true;
+    },
+    Btn_Cancel: function () {
+      this.tableList[this.currentIndex_data][this.currentLabel_data] =
+        this.currentValue_old;
+
+      this.blur();
+      this.currentValue_old = 0;
+      this.currentValue_new = 0;
+    },
+    Btn_Confirm: function () {
+      if (this.verifyScore(this.currentValue_new)) {
+        this.tableList[this.currentIndex_data][this.currentLabel_data] =
+          this.currentValue_new;
+        this.blur();
+        this.currentValue_old = 0;
+        this.currentValue_new = 0;
+      }
+    },
+    isDisabled: function () {
+      this.Btn_disabled = false;
     },
   },
 };
 </script>
 <style>
+#userspageBox .confirmField {
+  text-align: right;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+#userspageBox .confirmField button {
+  border: none;
+  /* background-color: aqua; */
+  margin-left: 10px;
+  width: 160px;
+  height: 35px;
+  border-radius: 5px;
+  transition: 0.2s;
+  color: white;
+}
+#userspageBox .confirmField #Btn_Cancel {
+  background-color: #808e9b;
+}
+#userspageBox .confirmField #Btn_Cancel:hover {
+  background-color: #d2dae2;
+  color: black;
+}
+#userspageBox .confirmField #Btn_Confirm {
+  background-color: #4e54c8;
+}
+#userspageBox .confirmField #Btn_Confirm:hover {
+  /* background-color: #3867d6; */
+  color: white;
+  background: #4e54c8; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    rgb(78, 84, 200),
+    rgb(143, 148, 251)
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    rgb(78, 84, 200),
+    rgb(143, 148, 251)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 #userspageBox {
   box-sizing: border-box;
   min-width: 700px;
@@ -202,5 +335,11 @@ export default {
 }
 #userspage .el-table__header {
   border-top: 1px #747d8c solid;
+}
+
+#userspage .cell {
+  transition: 0.4s;
+}
+#userspage .scoreStyle {
 }
 </style>
