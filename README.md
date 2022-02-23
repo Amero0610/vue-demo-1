@@ -9,9 +9,7 @@
 
 ## Project preview address
 
-[Project preview address]: (http://123.57.7.40:5057)
-
-
+ [Preview address](http://123.57.7.40:5057)
 
 
 ## Project setup
