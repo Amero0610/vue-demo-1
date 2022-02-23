@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-01-11 21:35:18
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-10 19:08:09
+ * @LastEditTime: 2022-02-24 03:09:51
  * @FilePath: \vue-demo-1\src\router\index.js
  */
 import Vue from 'vue'
@@ -104,7 +104,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    mode: 'history',
+    // mode: 'history',
     routes,
 })
 
