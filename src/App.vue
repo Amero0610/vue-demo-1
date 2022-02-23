@@ -10,6 +10,7 @@
           <Asidepage id="AsidePage" @getReply = "getReply"></Asidepage>
            </el-scrollbar>
         </el-aside>
+       
      
         <el-main class="main">
              <el-scrollbar style="height: 100%">
@@ -148,10 +149,14 @@ border-radius: 3px;
 
   font-family: "asnFont"; */
   /* Montserrat  Poppins*/
-  font-family: "Montserrat", sans-serif !important;
+  /* font-family: "Montserrat", sans-serif !important; */
+  font-family:'Poppins',sans-serif !important;
 
   text-align: center;
   color: #2c3e50;
+}
+.el-button {
+  font-family:'Poppins',sans-serif !important;
 }
 
 #nav {
