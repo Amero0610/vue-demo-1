@@ -16,7 +16,7 @@
              <el-scrollbar style="height: 100%">
           <transition name="fade" mode="out-in">
             <router-view>
-              <MainPage></MainPage>
+              <MainPage ></MainPage>
             </router-view>
           </transition>
           </el-scrollbar>

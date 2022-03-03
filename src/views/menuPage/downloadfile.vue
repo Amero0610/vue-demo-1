@@ -102,6 +102,7 @@
 </style>
 <script>
 import Axios from "axios";
+let globalObject = require('../../assets/globalAssets/globaldata');
 export default {
   data() {
     return {
@@ -142,6 +143,7 @@ export default {
       })
         .then((response) => {
           if (response.data) {
+            globalObject.pdf_FILENAME = response.data;
             this.$alert("Download Successfully!", "Message", {
               confirmButtonText: "Confirm",
             }).then(() => {

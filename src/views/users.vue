@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-02-15 00:12:55
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-16 01:39:52
+ * @LastEditTime: 2022-03-03 19:43:21
  * @FilePath: \vue-demo-1\src\views\users.vue
 -->
 <template>
@@ -103,6 +103,10 @@
       <button id="Btn_Confirm" @click="Btn_Confirm" :disabled="Btn_disabled">
         Confirm
       </button>
+    </div>
+
+    <div id="imagePanel">
+      
     </div>
   </div>
 </template>

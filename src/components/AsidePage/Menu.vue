@@ -43,27 +43,27 @@
           @close="handleClose"
           :collapse="isCollapse"
           router
-          default-active=""
+          :default-active="this.$route.path"
         >
           <el-menu-item
-            index="5-1"
+            index="/mainpage"
             route="/mainpage"
             class="menuItemContentleft"
           >
             <i class="el-icon-my-zhanghao"></i>
             <span slot="title">MainPage</span>
           </el-menu-item>
-          <el-menu-item index="5-2" route="/about" class="menuItemContentleft">
+          <el-menu-item index="/about" route="/about" class="menuItemContentleft">
             <i class="el-icon-my-xiangmuxiangqing"></i>
             <span slot="title">AboutPage</span>
           </el-menu-item>
-          <el-menu-item index="info" class="menuItemContentleft" route="/info">
+          <el-menu-item index="/info" class="menuItemContentleft" route="/info">
             <i class="el-icon-my-quanbuguanli"></i>
             <span slot="title">InfoPage</span>
           </el-menu-item>
         </el-menu>
         <el-menu
-          default-active="1"
+         :default-active="this.$route.path"
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
@@ -76,16 +76,16 @@
               <span slot="title">Navigator One</span>
             </template>
             <el-menu-item-group class="menuItemContentcenter">
-              <el-menu-item index="1-1" route="/downloadfile"
+              <el-menu-item index="/downloadfile" route="/downloadfile"
                 >Download file</el-menu-item
               >
-              <el-menu-item index="1-2" route="/musicplayer"
+              <el-menu-item index="/musicplayer" route="/musicplayer"
                 >Music Player</el-menu-item
               >
-              <el-menu-item index="1-3" route="/pdfpage"
+              <el-menu-item index="/pdfpage" route="/pdfpage"
                 >PDF Viewer</el-menu-item
               >
-              <el-menu-item index="1-4" route="/exampaper"
+              <el-menu-item index="/exampaper" route="/exampaper"
                 >Exam Paper</el-menu-item
               >
             </el-menu-item-group>
@@ -96,11 +96,11 @@
               <span slot="title">Navigator Two</span>
             </template>
             <el-menu-item-group class="menuItemContentcenter">
-              <el-menu-item index="2-1" route="/exampage"
+              <el-menu-item index="/exampage" route="/exampage"
                 >Exam Page</el-menu-item
               >
-              <el-menu-item index="2-2" route="/userlogin">User Login</el-menu-item>
-              <el-menu-item index="2-3" route="/userinfo">User Info</el-menu-item>
+              <el-menu-item index="/userlogin" route="/userlogin">User Login</el-menu-item>
+              <el-menu-item index="/userinfo" route="/userinfo">User Info</el-menu-item>
               <el-submenu index="2-4" class="menuItemContentcenter">
                 <template slot="title">
                   <span slot="title">Option 4</span>
@@ -112,13 +112,13 @@
               </el-submenu>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="3" id="testthird" class="menuItemContentleft" route="/users">
+          <el-menu-item index="/users" id="testthird" class="menuItemContentleft" route="/users">
             <i class="el-icon-my-chengjifenxi"></i>
             <span slot="title">Users Infomation</span>
           </el-menu-item>
-          <el-menu-item index="4" class="menuItemContentleft">
+          <el-menu-item index="/showpaperlist" class="menuItemContentleft" route="/showpaperlist">
             <i class="el-icon-my-shijuandianping"></i>
-            <span slot="title">Navigator Four</span>
+            <span slot="title">Paper List</span>
           </el-menu-item>
         </el-menu>
     </div>
@@ -132,7 +132,7 @@
   background-color: white ;
   transition: 0.4s;
   /* bottom: 0px; */
-  z-index: 1000000;
+  z-index: 2;
   top: 60px;
   width: 300px;
   position: fixed;

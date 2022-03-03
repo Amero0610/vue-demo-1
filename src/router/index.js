@@ -2,7 +2,7 @@
  * @Author: Amero
  * @Date: 2022-01-11 21:35:18
  * @LastEditors: Amero
- * @LastEditTime: 2022-02-24 03:09:51
+ * @LastEditTime: 2022-03-03 22:47:26
  * @FilePath: \vue-demo-1\src\router\index.js
  */
 import Vue from 'vue'
@@ -21,6 +21,7 @@ import UserLoginLoginCom from '../components/loginPage/loginPage.vue'
 import UserLoginlogupCom from '../components/loginPage/logupPage.vue'
 import UserInfoCom from '../views/userinfo.vue'
 import UsersCom from '../views/users.vue'
+import PaperListCom from '../views/paperList.vue'
 
 Vue.use(VueRouter)
 
@@ -99,6 +100,11 @@ const routes = [
         path:'/users',
         name:"Users Info",
         component:UsersCom
+    },
+    {
+        path:'/showpaperlist',
+        name:"Paper List",
+        component:PaperListCom
     }
     
 ]
