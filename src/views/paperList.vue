@@ -2,11 +2,29 @@
  * @Author: Amero
  * @Date: 2022-03-03 22:46:30
  * @LastEditors: Amero
- * @LastEditTime: 2022-03-04 01:30:49
+ * @LastEditTime: 2022-03-04 23:21:12
  * @FilePath: \vue-demo-1\src\views\paperList.vue
 -->
 <template>
   <div class="paperlist">
+    <el-dialog
+      title="Tip"
+
+      :visible.sync="dialogVisible"
+      :close-on-click-modal = "false"
+      :show-close= "false"
+      width="30%"
+      
+    >
+      <span>Did you jump to the test paper page?</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="toShowPdfPage"
+          >Confirm</el-button
+        >
+      </span>
+    </el-dialog>
+
     <div class="mainBox">this is paper list</div>
     <el-button type="primary" @click="btn_ShowPaperList"
       >Show Paper List</el-button
@@ -27,18 +45,12 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 let globalObject = require("../assets/globalAssets/globaldata");
-let OSS = require("ali-oss");
-let client = new OSS({
-  region: "oss-cn-beijing",
-  accessKeyId: "LTAI5tKQaN8iUWRYMWzCrVtQ",
-  accessKeySecret: "2aEoPPFQoLMAgIEv0qfMv1EJhXyiSc",
-  bucket: "my-imagestore",
-  secure: true,
-});
 export default {
   data: () => ({
     paperList: globalObject.pdf_LISTINFO,
+    dialogVisible:false
   }),
   filters: {
     nameFilter: function (remote_filename) {
@@ -56,35 +68,36 @@ export default {
       }
     },
     api_showList: function () {
-      client
-        .list()
-        .then((r1) => {
+      const listURL = "http://123.57.7.40:5000/getcloudfile/list";
+      axios
+        .get(listURL)
+        .then((data) => {
           globalObject.pdf_LISTINFO = [];
           this.paperList = [];
-          for (let i = 0; i < r1.objects.length; i++) {
-            if (this.fileFilter(r1.objects[i].name)) {
-              this.paperList.push(r1.objects[i]);
+          for (let i = 0; i < data.data.objects.length; i++) {
+            if (this.fileFilter(data.data.objects[i].name)) {
+              this.paperList.push(data.data.objects[i]);
             }
           }
           globalObject.pdf_LISTINFO = this.paperList;
-
-          // globalObject.pdf_LISTINFO = this.paperList;
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          console.log(error.data);
         });
     },
-    api_headFile: function (filename) {
-      client
-        .head(filename)
-        .then((result) => {
-          console.log(result);
-          console.log(result.res.requestUrls[0]);
-          globalObject.pdf_URL = result.res.requestUrls[0];
+    api_headFile: function (_filename) {
+      const headURL = "http://123.57.7.40:5000/getcloudfile/head";
+      axios
+        .get(headURL, {
+          params: {
+            filename: _filename,
+          },
+        })
+        .then((data) => {
+          globalObject.pdf_URL = data.data.res.requestUrls[0];
         })
         .catch((error) => {
           console.log(error);
-          return false;
         });
     },
     btn_ShowPaperList: function () {
@@ -93,10 +106,8 @@ export default {
     btn_HeadPaper: function () {
       this.api_headFile(globalObject.pdf_FILENAME);
     },
-    handleCurrentChange: function (currentRow) {
-      console.log(currentRow);
-      globalObject.pdf_FILENAME = currentRow.name;
-      globalObject.pdf_URL = currentRow.url;
+    toShowPdfPage: function () {
+      this.dialogVisible = false;
       const loading = this.$loading({
         lock: true,
         text: "Loading",
@@ -108,10 +119,21 @@ export default {
         this.$router.push("/pdfpage");
       }, 987);
     },
+    handleCurrentChange: function (currentRow) {
+      globalObject.pdf_FILENAME = currentRow.name;
+      globalObject.pdf_URL = currentRow.url;
+      this.dialogVisible = true
+    },
+  },
+  mounted: function () {
+    this.btn_ShowPaperList();
   },
 };
 </script>
 <style>
 .paperlist .mainBox {
+}
+.paperlist .el-dialog__wrapper{
+  transition-duration: 0.3s !important;
 }
 </style>

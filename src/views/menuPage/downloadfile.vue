@@ -77,6 +77,9 @@
   </div>
 </template>
 <style>
+.el-dialog__wrapper{
+  transition-duration: 0.3s !important;
+}
 #mainbox {
   width: 100%;
   /* height: 500px; */
@@ -145,6 +148,7 @@ export default {
           if (response.data) {
             globalObject.pdf_FILENAME = response.data;
             this.$alert("Download Successfully!", "Message", {
+              
               confirmButtonText: "Confirm",
             }).then(() => {
               loadingobj.close();
